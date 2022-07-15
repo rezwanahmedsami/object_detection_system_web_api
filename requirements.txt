@@ -1,0 +1,9 @@
+tensorflow
+keras
+opencv-python
+cython
+contextlib2
+pillow
+lxml
+jupyter
+numpy
