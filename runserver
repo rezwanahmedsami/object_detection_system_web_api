@@ -1,0 +1,10 @@
+#!/bin/bash
+# exec ./manage.py runserver 127.0.0.1:8000
+COMMAND1=$1
+if [ "$COMMAND1" = "production" ]
+then
+    exec ./manage.py runserver 192.168.1.4:8080
+elif [ "$COMMAND1" = "development" ]
+then
+    exec ./manage.py runserver 127.0.0.1:8000
+fi

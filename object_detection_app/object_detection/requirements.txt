@@ -7,3 +7,5 @@ pillow
 lxml
 jupyter
 numpy
+matplotlib
+tensorflow-object-detection-api

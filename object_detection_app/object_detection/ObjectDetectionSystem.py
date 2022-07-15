@@ -28,7 +28,7 @@ class ObjectDetectionSystem:
     def __init__(self) -> None:
         utils_ops.tf = tf.compat.v1
         tf.gfile = tf.io.gfile
-        PATH_TO_LABELS = 'models/research/object_detection/data/mscoco_label_map.pbtxt'
+        PATH_TO_LABELS = os.path.join(pathlib.Path(__file__).parent.resolve(), 'models/research/object_detection/data/mscoco_label_map.pbtxt')
         self.category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
 
         model_name = 'ssd_mobilenet_v1_coco_2017_11_17'
@@ -187,9 +187,11 @@ class ObjectDetectionSystem:
             detection_result = json.dumps(detection_result, indent=2)
         return detection_result
 
-    def DetectObjectsAndSaveImage(self, imagepath, imagePathforSave):
+    def DetectObjectsAndSaveImage(self, imagepath, imagePathforSave, Loadjson=False):
         img=cv2.imread(str(imagepath))
         detection_result= self.get_array_result_of_detection(self.detection_model,img)
         detected_img= self.show_inference(self.detection_model,img)
         status = cv2.imwrite(imagePathforSave, detected_img)
+        if Loadjson != False:
+            detection_result = json.dumps(detection_result, indent=2)
         return detection_result, status

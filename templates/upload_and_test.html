@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image"><br>
+            <button type="submit">Submit</button><br>
+            <p><b>{{ message }}</b></p><br>
+            <p>{{ detection_result }}</p><br>
+            <img src="/static/uploaded/{{show_img}}" width="500px" height="500px"/>
+        </form>
+    </body>
+</html>
